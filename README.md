@@ -1,22 +1,35 @@
-# duct-sentry
+# Duct database.mongodb.monger
 
-A Clojure library designed to ... well, that part is up to you.
+[Integrant][] methods for middleware that captures errors to [Sentry][] via
+[raven-clj][].
+
+[integrant]: https://github.com/weavejester/integrant
+[sentry]: https://sentry.io
+[raven-clj]: https://github.com/sethtrain/raven-clj
+
+## Installation
+
+To install, add the following to your project `:dependencies`
+
+    [viebel/sentry "0.1.0"]
 
 ## Usage
 
-FIXME
+This library supports a single integrant key `duct.middleware.sentry/capture-error`. This keyword wraps the `raven-clj.ring/wrap-sentry` function. The sentry dsn is passed on the `:dsn` key:
+
+```edn
+{
+:duct.middleware.sentry/capture-error {:dsn "my-dsn"}
+}
+```
+
+Additional parameterrs are passed as parameters to `raven-clj.ring/wrap-sentry`.
+
+For more information using raven-clj, see [raven-clj][].
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Yehonathan Sharvit
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
